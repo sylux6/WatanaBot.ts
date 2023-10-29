@@ -1,12 +1,12 @@
 import { SlashCommand } from '../types/slash-command';
-import { avatarCommand } from './fun/avatar';
-import { hentaiCommand } from './fun/hentai';
-import { lewdCommand } from './fun/lewd';
-import { rollCommand } from './fun/roll';
+import { AvatarCommand } from './fun/avatar';
+import { HentaiCommand } from './fun/hentai';
+import { LewdCommand } from './fun/lewd';
+import { RollCommand } from './fun/roll';
 
 export const REEXPORTED_COMMANDS: Record<string, SlashCommand> = {
-  [rollCommand.name]: rollCommand,
-  [lewdCommand.name]: lewdCommand,
-  [hentaiCommand.name]: hentaiCommand,
-  [avatarCommand.name]: avatarCommand,
+  [RollCommand.getInstance().name]: RollCommand.getInstance(),
+  [LewdCommand.getInstance().name]: LewdCommand.getInstance(),
+  [HentaiCommand.getInstance().name]: HentaiCommand.getInstance(),
+  [AvatarCommand.getInstance().name]: AvatarCommand.getInstance(),
 };

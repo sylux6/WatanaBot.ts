@@ -1,16 +1,25 @@
-import { EmbedBuilder, GuildMember } from 'discord.js';
+import {
+  ChatInputCommandInteraction,
+  EmbedBuilder,
+  GuildMember,
+} from 'discord.js';
 
 import { SlashCommand } from '../../types/slash-command';
 
-export const avatarCommand = new SlashCommand()
-  .setName('avatar')
-  .setDescription('Get avatar from a member')
-  .addUserOption(option =>
-    option
-      .setName('member')
-      .setDescription('The member to get the avatar from'),
-  )
-  .setExecute(interaction => {
+export class AvatarCommand extends SlashCommand {
+  name = 'avatar';
+  description = 'Get avatar from a member';
+
+  protected constructor() {
+    super();
+    this.addUserOption(option =>
+      option
+        .setName('member')
+        .setDescription('The member to get the avatar from'),
+    );
+  }
+
+  async execute(interaction: ChatInputCommandInteraction): Promise<void> {
     const member: GuildMember = (interaction.options.get('member')?.member ??
       interaction.member) as GuildMember;
 
@@ -21,4 +30,5 @@ export const avatarCommand = new SlashCommand()
           .setImage(member.user.avatarURL({ size: 256 })),
       ],
     });
-  });
+  }
+}
