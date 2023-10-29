@@ -1,15 +1,13 @@
-import { Client, Events, GatewayIntentBits } from 'discord.js';
+import { Events } from 'discord.js';
 
 import { token } from '../config.json';
+import { client } from './client/client';
+import { handleClientReady } from './client/events/client-ready';
+import { handleGuildMemberRemove } from './client/events/guild-member-remove';
+import { handleInteractionCreate } from './client/events/interaction-create';
 
-// Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-
-// When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, (c) => {
-  console.log(`Yousoro!~ (> ᴗ •)ゞ - Logged in as ${c.user.tag}`);
-});
-
-// Log in to Discord with your client's token
 void client.login(token);
+
+client.once(Events.ClientReady, handleClientReady);
+client.on(Events.InteractionCreate, handleInteractionCreate);
+client.on(Events.GuildMemberRemove, handleGuildMemberRemove);
