@@ -1,13 +1,12 @@
 import { Message } from 'discord.js';
 
-import { privateGuildId } from '../../../config.json';
-import { client } from '../client';
+import { client, config } from '../client';
 import { getYousoro } from '../utils';
 
 export function handleMessageCreate(message: Message<boolean>) {
   const content = message.content.toLowerCase();
 
-  if (message.inGuild() && message.guildId === privateGuildId) {
+  if (message.inGuild() && message.guildId === config.privateGuildId) {
     if (
       (content.includes('yousoro') || content.includes('sylux6yo')) &&
       !message.author.bot

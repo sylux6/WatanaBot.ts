@@ -9,7 +9,7 @@
     "sourceType": "module"
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "simple-import-sort", "import"],
+  "plugins": ["@typescript-eslint", "simple-import-sort", "import", "unused-imports"],
   "rules":{
     "arrow-parens": ["off", "always"],
     "arrow-spacing": ["warn", { "before": true, "after": true }],
@@ -36,7 +36,7 @@
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
     "no-shadow": ["error", { "allow": ["err", "resolve", "reject"] }],
     "no-trailing-spaces": ["error"],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_$" }],
+    "no-unused-vars": "off",
     "no-var": "error",
     "object-curly-spacing": ["error", "always"],
     "prefer-const": "error",
@@ -57,6 +57,11 @@
     "space-infix-ops": "error",
     "space-unary-ops": "error",
     "spaced-comment": "error",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_$", "args": "after-used", "argsIgnorePattern": "^_$" }
+    ],
     "yoda": "error"
   }
 }
