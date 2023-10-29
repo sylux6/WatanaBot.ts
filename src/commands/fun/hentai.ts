@@ -1,8 +1,12 @@
+import { ChatInputCommandInteraction } from 'discord.js';
+
 import { SlashCommand } from '../../types/slash-command';
 
-export const hentaiCommand = new SlashCommand()
-  .setName('hentai')
-  .setDescription("I'm not HENTAI!")
-  .setExecute(interaction =>
-    interaction.reply({ files: ['src/assets/nothentai.jpg'] }),
-  );
+export class HentaiCommand extends SlashCommand {
+  name = 'hentai';
+  description = "I'm not HENTAI!";
+
+  async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+    interaction.reply({ files: ['src/assets/nothentai.jpg'] });
+  }
+}
