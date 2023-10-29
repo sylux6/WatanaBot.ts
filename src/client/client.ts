@@ -1,7 +1,9 @@
 import { Client, GatewayIntentBits, REST } from 'discord.js';
 
-import { token } from '../../config.json';
+import * as configJson from '../../config.json';
+import { Config } from '../types/config';
 
+export const config: Config = configJson;
 export const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -10,4 +12,4 @@ export const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
 });
-export const rest = new REST().setToken(token);
+export const rest = new REST().setToken(config.token);

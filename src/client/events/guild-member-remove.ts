@@ -1,10 +1,10 @@
 import { GuildMember, PartialGuildMember } from 'discord.js';
 
-import { privateGuildId } from '../../../config.json';
+import { config } from '../client';
 
 export function handleGuildMemberRemove(
   interaction: GuildMember | PartialGuildMember,
 ) {
   // TODO
-  if (interaction.guild.id === privateGuildId) return;
+  if (interaction.guild.id === config.privateGuildId) return;
 }
