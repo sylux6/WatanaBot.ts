@@ -133,5 +133,8 @@ dist
 # IDE
 .idea
 
+# macOS
+.DS_Store
+
 # Bot configuration file
 config.json
