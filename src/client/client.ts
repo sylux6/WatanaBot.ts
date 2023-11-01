@@ -1,4 +1,5 @@
-import { Client, GatewayIntentBits, REST } from 'discord.js';
+import { PrismaClient } from '@prisma/client';
+import { Client, GatewayIntentBits, HexColorString, REST } from 'discord.js';
 
 import * as configJson from '../../config.json';
 import { Config } from '../types/config';
@@ -13,3 +14,5 @@ export const client = new Client({
   ],
 });
 export const rest = new REST().setToken(config.token);
+export const db = new PrismaClient();
+export const PRIMARY_COLOR: HexColorString = '#5594D7';

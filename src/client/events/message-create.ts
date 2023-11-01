@@ -3,7 +3,7 @@ import { Message } from 'discord.js';
 import { client, config } from '../client';
 import { getYousoro } from '../utils';
 
-export function handleMessageCreate(message: Message<boolean>) {
+export async function handleMessageCreate(message: Message<boolean>) {
   const content = message.content.toLowerCase();
 
   if (message.inGuild() && message.guildId === config.privateGuildId) {
@@ -15,7 +15,7 @@ export function handleMessageCreate(message: Message<boolean>) {
         ({ name }) => name === 'yousoro',
       );
       if (reaction) {
-        message.react(reaction);
+        await message.react(reaction);
       }
     }
   }
