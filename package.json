@@ -9,14 +9,14 @@
   },
   "author": "sylux6",
   "license": "ISC",
-  "installConfig": {
-    "pnp": true
-  },
   "dependencies": {
-    "discord.js": "^14.13.0"
+    "date-fns": "^2.30.0",
+    "discord.js": "^14.13.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@prisma/client": "^5.5.2",
+    "@types/lodash": "^4",
     "@types/node": "^20.8.9",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",

@@ -7,6 +7,8 @@ export class HentaiCommand extends SlashCommand {
   description = "I'm not HENTAI!";
 
   async execute(interaction: ChatInputCommandInteraction): Promise<void> {
-    interaction.reply({ files: ['src/assets/nothentai.jpg'] });
+    await interaction.reply({
+      files: ['src/assets/nothentai.jpg'],
+    });
   }
 }

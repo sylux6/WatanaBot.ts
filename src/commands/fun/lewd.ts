@@ -7,6 +7,6 @@ export class LewdCommand extends SlashCommand {
   description = "I'm not LEWD!";
 
   async execute(interaction: ChatInputCommandInteraction): Promise<void> {
-    interaction.reply({ files: ['src/assets/notlewd.jpg'] });
+    await interaction.reply({ files: ['src/assets/notlewd.jpg'] });
   }
 }

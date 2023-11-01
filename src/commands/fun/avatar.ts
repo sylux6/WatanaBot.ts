@@ -1,29 +1,23 @@
-import {
-  ChatInputCommandInteraction,
-  EmbedBuilder,
-  GuildMember,
-} from 'discord.js';
+import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 
+import { getDefaultInteractionOptionMember } from '../../client/utils';
 import { SlashCommand } from '../../types/slash-command';
 
 export class AvatarCommand extends SlashCommand {
   name = 'avatar';
   description = 'Get avatar from a member';
 
-  protected constructor() {
+  constructor() {
     super();
     this.addUserOption(option =>
-      option
-        .setName('member')
-        .setDescription('The member to get the avatar from'),
+      option.setName('member').setDescription('The member to get the avatar'),
     );
   }
 
   async execute(interaction: ChatInputCommandInteraction): Promise<void> {
-    const member: GuildMember = (interaction.options.get('member')?.member ??
-      interaction.member) as GuildMember;
+    const member = getDefaultInteractionOptionMember(interaction, 'member');
 
-    interaction.reply({
+    await interaction.reply({
       embeds: [
         new EmbedBuilder()
           .setDescription(`${member}`)
