@@ -11,8 +11,8 @@
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en)
-- [Yarn PnP](https://yarnpkg.com/features/pnp)
+- [Node.js](https://nodejs.org/)
+- [pnpm](https://pnpm.io/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 ### Configuration
