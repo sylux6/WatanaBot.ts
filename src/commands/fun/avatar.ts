@@ -12,16 +12,23 @@ export class AvatarCommand extends SlashCommand {
     this.addUserOption(option =>
       option.setName('member').setDescription('The member to get the avatar'),
     );
+    this.addBooleanOption(options =>
+      options.setName('original').setDescription('Get the original profile avatar'),
+    );
   }
 
   async execute(interaction: ChatInputCommandInteraction): Promise<void> {
     const member = getDefaultInteractionOptionMember(interaction, 'member');
+    const original = interaction.options.getBoolean('original');
 
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
           .setDescription(`${member}`)
-          .setImage(member.user.avatarURL({ size: 256 })),
+          .setImage(
+            (original ? member.user : member).avatarURL({ size: 4096 }) ??
+              member.user.avatarURL({ size: 4096 }),
+          ),
       ],
     });
   }
