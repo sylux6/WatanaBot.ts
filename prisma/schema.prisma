@@ -20,6 +20,8 @@ model users {
 }
 
 model guilds {
-  id                Int    @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
+  guildId           String  @unique
   birthdayChannelId String? @unique
+  logsChannelId     String? @unique
 }
