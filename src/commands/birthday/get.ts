@@ -1,7 +1,7 @@
 import { format, parse } from 'date-fns';
 import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 
-import { db, PRIMARY_COLOR } from '../../client/client';
+import { PRIMARY_COLOR, db } from '../../client/client';
 import { getDefaultInteractionOptionMember } from '../../client/utils';
 
 export async function get(interaction: ChatInputCommandInteraction) {
