@@ -6,7 +6,9 @@ import { NotImplementedError } from '../../types/slash-command';
 import { createBotEmbed } from '../utils';
 
 export async function handleInteractionCreate(interaction: Interaction) {
-  if (!interaction.isChatInputCommand()) return;
+  if (!interaction.isChatInputCommand()) {
+    return;
+  }
 
   if (interaction.commandName in ALL_COMMANDS) {
     try {

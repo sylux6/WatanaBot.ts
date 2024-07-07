@@ -7,13 +7,8 @@ export async function handleMessageCreate(message: Message<boolean>) {
   const content = message.content.toLowerCase();
 
   if (message.inGuild() && message.guildId === config.privateGuildId) {
-    if (
-      (content.includes('yousoro') || content.includes('sylux6yo')) &&
-      !message.author.bot
-    ) {
-      const reaction = message.guild?.emojis?.cache?.find(
-        ({ name }) => name === 'yousoro',
-      );
+    if ((content.includes('yousoro') || content.includes('sylux6yo')) && !message.author.bot) {
+      const reaction = message.guild?.emojis?.cache?.find(({ name }) => name === 'yousoro');
       if (reaction) {
         await message.react(reaction);
       }
