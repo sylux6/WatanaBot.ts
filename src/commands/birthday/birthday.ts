@@ -26,6 +26,7 @@ export class BirthdayCommand extends SlashCommandGroup {
 
   constructor() {
     super();
+
     this.addSlashSubcommand(
       subCommand =>
         subCommand
@@ -36,6 +37,7 @@ export class BirthdayCommand extends SlashCommandGroup {
           ),
       interaction => get(interaction),
     );
+
     this.addSlashSubcommand(
       subCommand =>
         subCommand
@@ -61,6 +63,7 @@ export class BirthdayCommand extends SlashCommandGroup {
           ),
       interaction => set(interaction),
     );
+
     this.addSlashSubcommand(
       subCommand =>
         subCommand

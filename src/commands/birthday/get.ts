@@ -1,12 +1,12 @@
 import { format, parse } from 'date-fns';
 import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 
-import { PRIMARY_COLOR, db } from '../../client/client';
+import { PRIMARY_COLOR, prismaClient } from '../../client/client';
 import { getDefaultInteractionOptionMember } from '../../client/utils';
 
 export async function get(interaction: ChatInputCommandInteraction) {
   const member = getDefaultInteractionOptionMember(interaction, 'member');
-  const user = await db.users.findUnique({
+  const user = await prismaClient.users.findUnique({
     where: { userId: member.id },
   });
   if (user && user.birthdayMonth && user.birthdayDay) {

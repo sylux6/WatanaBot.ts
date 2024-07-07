@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 
-import { PrismaClient } from '@prisma/client';
 import { Client, GatewayIntentBits, HexColorString, REST } from 'discord.js';
 
+import { PrismaClient } from '@prisma/client';
 import { Config } from '../types/config';
 
 function getConfig(): Config {
@@ -30,5 +30,5 @@ export const client = new Client({
   ],
 });
 export const rest = new REST().setToken(config.token);
-export const db = new PrismaClient();
+export const prismaClient = new PrismaClient();
 export const PRIMARY_COLOR: HexColorString = '#5594D7';

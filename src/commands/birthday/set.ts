@@ -1,7 +1,7 @@
 import { format, isValid, parse } from 'date-fns';
 import { ChatInputCommandInteraction, User } from 'discord.js';
 
-import { db } from '../../client/client';
+import { prismaClient } from '../../client/client';
 import { createBotEmbed, getDefaultInteractionOptionMember } from '../../client/utils';
 import { ReplyType } from '../../types/reply-type';
 
@@ -47,7 +47,7 @@ export async function set(interaction: ChatInputCommandInteraction) {
     }
   }
 
-  await db.users.upsert({
+  await prismaClient.users.upsert({
     create: { userId: member.id, birthdayDay, birthdayMonth },
     update: { birthdayDay, birthdayMonth },
     where: { userId: member.id },

@@ -12,8 +12,8 @@ export class AvatarCommand extends SlashCommand {
     this.addUserOption(option =>
       option.setName('member').setDescription('The member to get the avatar'),
     );
-    this.addBooleanOption(options =>
-      options.setName('original').setDescription('Get the original profile avatar'),
+    this.addBooleanOption(option =>
+      option.setName('original').setDescription('Get the original profile avatar'),
     );
   }
 
