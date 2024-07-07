@@ -2,7 +2,7 @@ import { format, parse } from 'date-fns';
 import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { groupBy } from 'lodash';
 
-import { db, PRIMARY_COLOR } from '../../client/client';
+import { PRIMARY_COLOR, db } from '../../client/client';
 
 export async function month(interaction: ChatInputCommandInteraction) {
   const birthdayMonth = interaction.options.getInteger('month') ?? new Date().getUTCMonth() + 1;
