@@ -11,10 +11,15 @@ datasource db {
 }
 
 model users {
-  id Int @id @default(autoincrement())
-  userId String @unique
+  id            Int    @id @default(autoincrement())
+  userId        String @unique
   birthdayMonth Int?
-  birthdayDay Int?
+  birthdayDay   Int?
 
   @@index([userId, birthdayDay, birthdayMonth])
+}
+
+model guilds {
+  id                Int    @id @default(autoincrement())
+  birthdayChannelId String? @unique
 }
