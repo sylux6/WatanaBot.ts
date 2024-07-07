@@ -10,7 +10,9 @@
   "author": "sylux6",
   "license": "ISC",
   "dependencies": {
+    "cron": "^3.1.7",
     "date-fns": "^2.30.0",
+    "date-fns-tz": "^3.1.3",
     "discord.js": "^14.15.3",
     "lodash": "^4.17.21"
   },

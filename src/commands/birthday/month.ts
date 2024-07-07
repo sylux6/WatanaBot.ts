@@ -2,12 +2,12 @@ import { format, parse } from 'date-fns';
 import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { groupBy } from 'lodash';
 
-import { PRIMARY_COLOR, db } from '../../client/client';
+import { PRIMARY_COLOR, prismaClient } from '../../client/client';
 
 export async function month(interaction: ChatInputCommandInteraction) {
   const birthdayMonth = interaction.options.getInteger('month') ?? new Date().getUTCMonth() + 1;
 
-  const users = await db.users.findMany({
+  const users = await prismaClient.users.findMany({
     where: { birthdayMonth, birthdayDay: { not: null } },
     select: { userId: true, birthdayDay: true },
     orderBy: { birthdayDay: 'asc' },

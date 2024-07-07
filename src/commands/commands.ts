@@ -1,4 +1,5 @@
 import { SlashCommand } from '../types/slash-command';
+import { AdminCommand } from './admin/admin';
 import { BirthdayCommand } from './birthday/birthday';
 import { AvatarCommand } from './fun/avatar';
 import { HentaiCommand } from './fun/hentai';
@@ -11,6 +12,7 @@ const REEXPORTED_COMMANDS: (typeof SlashCommand)[] = [
   HentaiCommand,
   AvatarCommand,
   BirthdayCommand,
+  AdminCommand,
 ];
 
 export const ALL_COMMANDS: Record<string, SlashCommand> = Object.fromEntries(
