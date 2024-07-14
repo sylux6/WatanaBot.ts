@@ -13,7 +13,7 @@ export class AdminCommand extends SlashCommandGroup {
 
     this.addSlashSubcommand(
       subCommand => subCommand.setName('shutdown').setDescription('Shutdown Watanabot'),
-      interaction =>
+      async interaction =>
         interaction
           .reply({ content: 'Shutting down...', ephemeral: true })
           .then(() => client.destroy()),

@@ -1,6 +1,5 @@
-import { Events } from 'discord.js';
-
 import { CronJob } from 'cron';
+import { Events } from 'discord.js';
 import { client, config } from './client/client';
 import { handleClientReady } from './client/events/client-ready';
 import { handleGuildMemberRemove } from './client/events/guild-member-remove';

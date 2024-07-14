@@ -5,7 +5,7 @@ import { PRIMARY_COLOR } from './client';
 
 export function getYousoro(guild: Guild | null): string {
   const emoji = guild ? guild.emojis.cache.find(({ name }) => name === 'yousoro') : null;
-  return emoji ? `${emoji}` : '(> ᴗ •)ゞ';
+  return `${emoji ?? '(> ᴗ •)ゞ'}`;
 }
 
 export function getDefaultInteractionOptionMember(
