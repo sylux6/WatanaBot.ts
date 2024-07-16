@@ -23,7 +23,6 @@ Create a `config.json` file at the root of the project
 {
   "token": "discord bot token",
   "clientId": "discord bot client id",
-  "privateGuildId": "[optional] discord server id",
   "postgresUser": "postgres user",
   "postgresPassword": "postgres password",
   "postgresDb": "postgres database name"
