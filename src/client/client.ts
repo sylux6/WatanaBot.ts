@@ -15,7 +15,6 @@ function getConfig(): Config {
       postgresDb: process.env.POSTGRES_DB ?? '',
       postgresPassword: process.env.POSTGRES_PASSWORD ?? '',
       postgresUser: process.env.POSTGRES_USER ?? '',
-      privateGuildId: process.env.PRIVATE_GUILD_ID,
     };
   }
 }
