@@ -1,12 +1,12 @@
 import { Message } from 'discord.js';
 
-import { client, config } from '../client';
+import { client } from '../client';
 import { getYousoro } from '../utils';
 
 export async function handleMessageCreate(message: Message<boolean>) {
   const content = message.content.toLowerCase();
 
-  if (message.inGuild() && message.guildId === config.privateGuildId) {
+  if (message.inGuild()) {
     if ((content.includes('yousoro') || content.includes('sylux6yo')) && !message.author.bot) {
       const reaction = message.guild?.emojis?.cache?.find(({ name }) => name === 'yousoro');
       if (reaction) {
