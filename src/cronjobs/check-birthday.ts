@@ -12,39 +12,30 @@ export async function checkBirthday() {
   const guildsInDb = await prismaClient.guilds.findMany({
     where: { NOT: { birthdayChannelId: null } },
   });
-  if (users.length > 0 && guildsInDb.length > 0) {
-    for (const guildInDb of guildsInDb) {
-      const start = new Date();
-      const guild = client.guilds.cache.get(guildInDb.guildId);
-      if (!guild) {
-        continue;
-      }
+  for (const guildInDb of guildsInDb) {
+    const start = new Date();
+    const guild = client.guilds.cache.get(guildInDb.guildId);
 
-      const members = users.map(user => guild?.members.cache.get(user.userId)).filter(Boolean);
-      if (!members.length) {
-        continue;
+    if (guild) {
+      const members = users.map(user => guild.members.cache.get(user.userId)).filter(Boolean);
+      if (members.length > 0) {
+        const channel = guild.channels.cache.get(guildInDb.birthdayChannelId!) as TextChannel;
+        if (channel) {
+          await channel?.send({
+            content: `Happy Birthday ${getYousoro(guild)} 🎂\n${members.join('\n')}`,
+          });
+        }
       }
-
-      const channel = guild?.channels.cache.get(guildInDb.birthdayChannelId!) as TextChannel;
-      if (!channel) {
-        continue;
-      }
-
-      await channel?.send({
-        content: `Happy Birthday ${getYousoro(guild)} 🎂\n${members.join('\n')}`,
-      });
 
       if (guildInDb.logsChannelId) {
         const logChannel = guild.channels.cache.get(guildInDb.logsChannelId) as TextChannel;
-        if (!logChannel) {
-          continue;
+        if (logChannel) {
+          const embed = new EmbedBuilder().setColor(PRIMARY_COLOR).addFields({
+            name: "Check members' birthday",
+            value: `${new Date().getTime() - start.getTime()}ms`,
+          });
+          await logChannel.send({ embeds: [embed] });
         }
-
-        const embed = new EmbedBuilder().setColor(PRIMARY_COLOR).addFields({
-          name: "Check members' birthday",
-          value: `${new Date().getTime() - start.getTime()}ms`,
-        });
-        await logChannel.send({ embeds: [embed] });
       }
     }
   }
