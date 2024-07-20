@@ -18,6 +18,6 @@ client.on(Events.MessageCreate, handleMessageCreate);
 CronJob.from({
   cronTime: '0 0 * * *',
   onTick: () => checkBirthday(),
-  start: false,
+  start: true,
   timeZone: 'Europe/Paris',
 });
