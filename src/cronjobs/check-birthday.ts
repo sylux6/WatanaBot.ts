@@ -4,6 +4,7 @@ import { PRIMARY_COLOR, client, prismaClient } from '../client/client';
 import { getYousoro } from '../client/utils';
 
 export async function checkBirthday() {
+  let start = new Date();
   const today = toZonedTime(new Date(), 'Europe/Paris');
   const users = await prismaClient.users.findMany({
     where: { birthdayMonth: today.getMonth() + 1, birthdayDay: today.getDate() },
@@ -12,8 +13,10 @@ export async function checkBirthday() {
   const guildsInDb = await prismaClient.guilds.findMany({
     where: { NOT: { birthdayChannelId: null } },
   });
+  const getUsersTime = new Date().getTime() - start.getTime();
+
   for (const guildInDb of guildsInDb) {
-    const start = new Date();
+    start = new Date();
     const guild = client.guilds.cache.get(guildInDb.guildId);
 
     if (guild) {
@@ -32,7 +35,7 @@ export async function checkBirthday() {
         if (logChannel) {
           const embed = new EmbedBuilder().setColor(PRIMARY_COLOR).addFields({
             name: "Check members' birthday",
-            value: `${new Date().getTime() - start.getTime()}ms`,
+            value: `${new Date().getTime() - start.getTime() + getUsersTime}ms`,
           });
           await logChannel.send({ embeds: [embed] });
         }
