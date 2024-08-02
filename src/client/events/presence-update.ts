@@ -1,4 +1,5 @@
 import { ActivityType, Presence } from 'discord.js';
+import { retryableFetch } from '../utils';
 
 export function handlePresenceUpdate(_: Presence | null, newPresence: Presence) {
   if (!newPresence.guild || !newPresence.member) {
@@ -9,11 +10,15 @@ export function handlePresenceUpdate(_: Presence | null, newPresence: Presence) 
   );
   const role = newPresence.guild.roles.cache.find(({ name }) => name === 'On Live');
 
-  if (role) {
-    if (isStreaming) {
-      newPresence.member.roles.add(role);
-    } else {
-      newPresence.member.roles.remove(role);
+  try {
+    if (role) {
+      if (isStreaming) {
+        retryableFetch(() => newPresence.member!.roles.add(role));
+      } else {
+        retryableFetch(() => newPresence.member!.roles.remove(role));
+      }
     }
+  } catch (error: any) {
+    console.error(error);
   }
 }

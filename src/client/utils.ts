@@ -23,12 +23,12 @@ export function createBotEmbed(params: {
 
   switch (params.replyType) {
     case ReplyType.ERROR:
-      embed.setAuthor({ name: '⚠️ Error' });
+      embed.setAuthor({ name: '! Error' });
       embed.setColor(Colors.Red);
       embed.setFooter({ text: 'report issue at https://github.com/Sylux6/WatanaBot.ts/issues' });
       break;
     case ReplyType.WARNING:
-      embed.setAuthor({ name: '⚠️ Warning' });
+      embed.setAuthor({ name: '! Warning' });
       embed.setColor(Colors.Yellow);
       break;
     default:
@@ -36,4 +36,19 @@ export function createBotEmbed(params: {
   }
 
   return embed;
+}
+
+export async function retryableFetch<T>(fetchFunction: () => Promise<T>, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fetchFunction();
+    } catch (error: any) {
+      if (error.code === 'UND_ERR_CONNECT_TIMEOUT' && i < retries - 1) {
+        console.warn(`Timeout error encountered. Retrying (${i + 1}/${retries})...`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } else {
+        throw error;
+      }
+    }
+  }
 }
