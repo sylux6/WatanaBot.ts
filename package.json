@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --exit-child src/index.ts",
     "start": "ts-node src/index.ts",
-    "lint": "pnpm exec biome check --write"
+    "lint": "bun run biome check --write"
   },
   "author": "sylux6",
   "license": "ISC",
@@ -19,21 +19,21 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.18.0",
     "@types/lodash": "^4.17.7",
-    "@types/node": "^20.14.11",
+    "@types/node": "^20.16.1",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "discord-api-types": "^0.37.92",
+    "discord-api-types": "^0.37.97",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.2.0",
     "husky": "^8.0.3",
-    "lint-staged": "^15.2.7",
-    "prisma": "^5.17.0",
+    "lint-staged": "^15.2.9",
+    "prisma": "^5.18.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "husky": {
     "hooks": {
@@ -41,7 +41,7 @@
     }
   },
   "lint-staged": {
-    "*.(ts|tsx)": ["biome --write"]
+    "*.(ts|tsx)": ["biome check --write"]
   },
-  "packageManager": "pnpm@9.4.0"
+  "trustedDependencies": ["@biomejs/biome"]
 }
