@@ -12,7 +12,7 @@
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- [pnpm](https://pnpm.io/)
+- [bun](https://bun.sh/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 ### Configuration

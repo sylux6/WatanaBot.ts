@@ -15,21 +15,23 @@ export async function handleMessageCreate(message: Message<boolean>) {
     }
   }
 
-  if (content.includes('zensoku zenshin')) {
-    message.channel.send('YOUSORO!~ (> ᴗ •)ゞ');
-  }
+  if (message.channel.isSendable()) {
+    if (content.includes('zensoku zenshin')) {
+      message.channel.send('YOUSORO!~ (> ᴗ •)ゞ');
+    }
 
-  if (message.mentions.has(client.user!)) {
-    if (content.includes('lewd')) {
-      message.channel.send({
-        content: "I'm not lewd!",
-        reply: { messageReference: message },
-      });
-    } else {
-      message.channel.send({
-        content: getYousoro(message.guild),
-        reply: { messageReference: message },
-      });
+    if (message.mentions.has(client.user!)) {
+      if (content.includes('lewd')) {
+        message.channel.send({
+          content: "I'm not lewd!",
+          reply: { messageReference: message },
+        });
+      } else {
+        message.channel.send({
+          content: getYousoro(message.guild),
+          reply: { messageReference: message },
+        });
+      }
     }
   }
 }
