@@ -26,7 +26,7 @@ export async function handleMessageCreate(message: Message<boolean>) {
           content: "I'm not lewd!",
           reply: { messageReference: message },
         });
-      } else {
+      } else if (!message.mentions.everyone) {
         message.channel.send({
           content: getYousoro(message.guild),
           reply: { messageReference: message },
