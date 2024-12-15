@@ -1,6 +1,8 @@
 import { APIApplicationCommandOptionChoice } from 'discord.js';
 
+import { PermissionFlagsBits } from 'discord-api-types/v10';
 import { SlashCommandGroup } from '../../types/slash-command-group';
+import { check } from './check';
 import { get } from './get';
 import { month } from './month';
 import { set } from './set';
@@ -77,5 +79,10 @@ export class BirthdayCommand extends SlashCommandGroup {
           ),
       interaction => month(interaction),
     );
+
+    this.addSlashSubcommand(
+      subCommand => subCommand.setName('check').setDescription('Manually run birthday check'),
+      interaction => check(interaction),
+    ).setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
   }
 }
