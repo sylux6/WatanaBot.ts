@@ -6,6 +6,10 @@ import { getYousoro } from '../utils';
 export async function handleMessageCreate(message: Message<boolean>) {
   const content = message.content.toLowerCase();
 
+  if (message.author.bot) {
+    return;
+  }
+
   if (message.inGuild()) {
     if ((content.includes('yousoro') || content.includes('sylux6yo')) && !message.author.bot) {
       const reaction = message.guild?.emojis?.cache?.find(({ name }) => name === 'yousoro');
